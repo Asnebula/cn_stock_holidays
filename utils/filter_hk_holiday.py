@@ -4,8 +4,8 @@ import logging
 import pickle
 from functools import reduce
 
-from cn_stock_holidays.common import date_to_str
-from cn_stock_holidays.data import *
+from cnhd.common import date_to_str
+from cnhd.data import *
 
 logging.getLogger().setLevel(logging.INFO)
 

@@ -1,7 +1,7 @@
 
 import unittest
 
-from cn_stock_holidays.data import *
+from cnhd.data import *
 
 
 class TestData(unittest.TestCase):

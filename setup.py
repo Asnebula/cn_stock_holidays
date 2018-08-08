@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="cn-stock-holidays",
+    name="cnhd",
     version="1.3",
     packages=find_packages(),
     install_requires=[
@@ -15,7 +15,7 @@ setup(
     description="A List of china stock exchange holidays",
     license="MIT",
     keywords="china stock holiday exchange Shanghai, Shenzhen and HongKong",
-    url="https://github.com/Asnebula/cn_stock_holidays.git",  # project home page, if any
+    url="https://github.com/Asnebula/cnhd.git",  # project home page, if any
 
     package_data={
         # If any package contains *.txt or *.rst files, include them:
@@ -23,8 +23,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'cn-stock-holiday-sync=cn_stock_holidays.data_helper:main',
-            'get-day-list=cn_stock_holidays.tools.cmd:main',
+            'cnhd-sync=cnhd.data_helper:main',
+            'get-day-list=cnhd.tools.cmd:main',
         ]
     }
 )

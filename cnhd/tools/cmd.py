@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import click
-from cn_stock_holidays import data_helper, common
+from cnhd import data_helper, common
 import datetime
 import platform
 

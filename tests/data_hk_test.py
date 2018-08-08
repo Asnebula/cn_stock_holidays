@@ -2,7 +2,7 @@
 
 import unittest
 
-from cn_stock_holidays.data_hk import *
+from cnhd.data_hk import *
 
 
 class TestHkData(unittest.TestCase):

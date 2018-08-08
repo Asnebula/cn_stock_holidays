@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import click
-from cn_stock_holidays.common import str_to_int, int_to_date
+from cnhd.common import str_to_int, int_to_date
 
 
 @click.command()

@@ -6,7 +6,7 @@ import datetime
 import logging
 import os
 import requests
-from cn_stock_holidays.common import *
+from cnhd.common import *
 
 CN_STOCK_FILE = 'data.txt'
 HK_STOCK_FILE = 'data_hk.txt'
@@ -29,10 +29,10 @@ class DataHelper:
 
     def get_cache_path(self):
         """
-        :return: '/home/YOURNAME/.cn_stock_holidays/data.txt' alike
+        :return: '/home/YOURNAME/.cnhd/data.txt' alike
         """
         usr_home = os.path.expanduser('~')
-        cache_dir = os.path.join(usr_home, '.cn_stock_holidays')
+        cache_dir = os.path.join(usr_home, '.cnhd')
         if not (os.path.isdir(cache_dir)):
             os.mkdir(cache_dir)
         return os.path.join(cache_dir, self.data_file_name)
@@ -57,7 +57,7 @@ class DataHelper:
         :return: a list contains all holiday data, element with datatime.date format
         """
         response = requests.get(
-            'https://raw.githubusercontent.com/Asnebula/cn_stock_holidays/master/cn_stock_holidays/data.txt')
+            'https://raw.githubusercontent.com/Asnebula/cnhd/master/cnhd/data.txt')
         cache_path = self.get_cache_path()
 
         with open(cache_path, 'wb') as f:

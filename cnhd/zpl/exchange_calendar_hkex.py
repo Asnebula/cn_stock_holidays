@@ -1,5 +1,5 @@
 from datetime import time
-from cn_stock_holidays.data_helper import DataHelper
+from cnhd.data_helper import DataHelper
 from pandas import Timestamp, date_range, DatetimeIndex
 import pytz
 from zipline.utils.memoize import remember_last, lazyval
@@ -30,11 +30,11 @@ class HKExchangeCalendar(TradingCalendar):
     Sample Code in ipython:
 
     > from zipline.utils.calendars import *
-    > from cn_stock_holidays.zpl.exchange_calendar_hkex import HKExchangeCalendar
+    > from cnhd.zpl.exchange_calendar_hkex import HKExchangeCalendar
     > register_calendar("HKEX", HKExchangeCalendar(), force=True)
     > c=get_calendar("HKEX")
 
-    for the guy need to keep updating about holiday file, try to add `cn-stock-holiday-sync-hk` command to crontab
+    for the guy need to keep updating about holiday file, try to add `cnhd-sync-hk` command to crontab
     """
 
     def __init__(self, start=start_default, end=end_default):
