@@ -1,20 +1,21 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = "cn-stock-holidays",
-    version = "1.3",
-    packages = find_packages(),
+    name="cn-stock-holidays",
+    version="1.3",
+    packages=find_packages(),
     install_requires=[
-        'requests'
+        'requests',
+        'click'
     ],
 
     # metadata for upload to PyPI
-    author="rainx",
-    author_email="i@rainx.cn",
+    author="Asnebula",
+    author_email="Asenbula@sina.com",
     description="A List of china stock exchange holidays",
     license="MIT",
-    keywords="china stock holiday exchange shanghai, shenzhen and hongkong",
-    url="https://github.com/rainx/cn_stock_holidays.git",  # project home page, if any
+    keywords="china stock holiday exchange Shanghai, Shenzhen and HongKong",
+    url="https://github.com/Asnebula/cn_stock_holidays.git",  # project home page, if any
 
     package_data={
         # If any package contains *.txt or *.rst files, include them:

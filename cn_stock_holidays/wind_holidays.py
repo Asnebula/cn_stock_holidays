@@ -1,8 +1,11 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 from WindPy import *
 from pandas.tseries.offsets import CustomBusinessDay
 import pandas as pd
 
+'''
+通过wind的Python接口获取所有start_date到end_date的假日(非交易日),并存入data.txt文本文件中
+'''
 # 结束日期可以超过当前年份，但是wind拿到的数据不准确，准确的只有到当年结束
 start_date = "1990-01-01"
 end_date = "2050-12-31"

@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import datetime
 from functools import wraps
 import sys
 
-
-
+'''
+一些类型转换函数和其他
+'''
 if sys.version_info.major == 2:
     def function_cache(function):
         memo = {}
@@ -23,20 +26,24 @@ if sys.version_info.major == 2:
 
         wrapper.cache_clear = cache_clear
         return wrapper
-else: # suppose it is 3 or larger
+else:  # suppose it is 3 or larger
     from functools import lru_cache
-    function_cache = lru_cache(None, typed=True)
+
+    function_cache = lru_cache(None, typed=True)  # 缓存函数调用结果
 
 
 def int_to_date(d):
     d = str(d)
     return datetime.date(int(d[:4]), int(d[4:6]), int(d[6:]))
 
+
 def date_to_str(da):
     return da.strftime("%Y%m%d")
 
+
 def str_to_int(s):
     return int(s)
+
 
 def date_to_int(da):
     return str_to_int(date_to_str(da))

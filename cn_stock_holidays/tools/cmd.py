@@ -1,4 +1,4 @@
-#coding: utf-8
+# -*- coding: utf-8 -*-
 
 import click
 from cn_stock_holidays import data
@@ -8,21 +8,23 @@ import platform
 
 
 @click.command()
-@click.option("--market", "-m", default='cn', help="CN or Hk")
+@click.option("--market", "-m", default='cn', help="CN or HK")
 @click.option("--start", "-s", required=True, help="START DATE FORMAT YYYY-MM-DD or YYYYMMDD")
-@click.option("--end", "-e", required=True,  help="END DATE FORMAT YYYY-MM-DD or YYYYMMDD")
+@click.option("--end", "-e", required=True, help="END DATE FORMAT YYYY-MM-DD or YYYYMMDD")
 @click.option("--output", "-o", default="-", help="Output file, - is stdout")
 @click.option("--format", "-f", default='YYYY-MM-DD', help="output format ,YYYY-MM-DD or YYYYMMDD")
 @click.option("--daytype", "-d", default="workday", help="workday or holiday")
 def main(market, start, end, output, format, daytype):
     if market == 'cn':
         holiday = data
-    else:
+    elif market == 'hk':
         holiday = data_hk
+    else:
+        # TODO extend to cn_future holidays
+        pass
 
     start_date = parse_date(start)
     end_date = parse_date(end)
-
 
     output_arr = []
     cur_date = start_date
@@ -46,7 +48,6 @@ def main(market, start, end, output, format, daytype):
 
     output_str = linesep.join([d.strftime(format_str) for d in output_arr])
 
-
     if output == '-':
         print(output_str)
     else:
@@ -55,7 +56,6 @@ def main(market, start, end, output, format, daytype):
 
 
 def parse_date(dstr):
-
     # handle YYYYMMDD
     if len(dstr) == 8:
         return data.int_to_date(dstr)
@@ -66,7 +66,6 @@ def parse_date(dstr):
             raise Exception("start or end format is invalid")
 
         return datetime.date(year=int(darr[0]), month=int(darr[1]), day=int(darr[2]))
-
 
 
 if __name__ == '__main__':
