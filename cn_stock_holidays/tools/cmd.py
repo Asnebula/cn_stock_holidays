@@ -1,28 +1,20 @@
 # -*- coding: utf-8 -*-
 
 import click
-# from cn_stock_holidays import data
-# from cn_stock_holidays import data_hk
 from cn_stock_holidays import data_helper, common
 import datetime
 import platform
 
 
 @click.command()
-@click.option("--market", "-m", default='cn', help="CN or HK")
+@click.option("--market", "-m", default='CN', help="CN or HK")
 @click.option("--start", "-s", required=True, help="START DATE FORMAT YYYY-MM-DD or YYYYMMDD")
 @click.option("--end", "-e", required=True, help="END DATE FORMAT YYYY-MM-DD or YYYYMMDD")
 @click.option("--output", "-o", default="-", help="Output file, - is stdout")
 @click.option("--format", "-f", default='YYYY-MM-DD', help="output format ,YYYY-MM-DD or YYYYMMDD")
 @click.option("--daytype", "-d", default="workday", help="workday or holiday")
 def main(market, start, end, output, format, daytype):
-    if market == 'cn':
-        holiday = data_helper.DataHelper('data.txt');
-    elif market == 'hk':
-        holiday = data_helper.DataHelper('data_hk.txt');
-    else:
-        # TODO extend to cn_future holidays
-        pass
+    holiday = data_helper.DataHelper(market)
 
     start_date = parse_date(start)
     end_date = parse_date(end)

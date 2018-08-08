@@ -8,10 +8,16 @@ import os
 import requests
 from cn_stock_holidays.common import *
 
+CN_STOCK_FILE = 'data.txt'
+HK_STOCK_FILE = 'data_hk.txt'
+
 
 class DataHelper:
-    def __init__(self, data_file_name):
-        self.data_file_name = data_file_name
+    def __init__(self, exchange):
+        if exchange == 'CN':
+            self.data_file_name = CN_STOCK_FILE
+        elif exchange == 'HK':
+            self.data_file_name = HK_STOCK_FILE
 
     def get_local(self, use_list=False):
         """
@@ -41,7 +47,7 @@ class DataHelper:
         cache_path = self.get_cache_path()
 
         if os.path.isfile(cache_path):
-            return _get_from_file(cache_path, use_list)
+            return get_from_file(cache_path, use_list)
         else:
             return self.get_local()
 
@@ -82,6 +88,8 @@ class DataHelper:
         else:
             logging.info("local data is not expired, no need to fetch new data")
 
+
+class CalendarTool(DataHelper):
     def is_trading_day(self, dt):
         if type(dt) is datetime.datetime:
             dt = dt.date()
@@ -129,7 +137,7 @@ class DataHelper:
 
 
 def main():
-    d_cn = DataHelper('data.txt')
-    d_hk = DataHelper('data_hk.txt')
+    d_cn = DataHelper('CN')
+    d_hk = DataHelper('HK')
     d_cn.sync_data()
     d_hk.sync_data()

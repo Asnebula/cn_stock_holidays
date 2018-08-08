@@ -8,15 +8,15 @@ import sys
 一些类型转换函数和其他
 '''
 if sys.version_info.major == 2:
-    def function_cache(function):
+    def function_cache(f):
         memo = {}
 
-        @wraps(function)
+        @wraps(f)
         def wrapper(*args, **kwargs):
             if args in memo:
                 return memo[args]
             else:
-                rv = function(*args, **kwargs)
+                rv = f(*args, **kwargs)
                 memo[args] = rv
                 return rv
 
