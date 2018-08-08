@@ -1,5 +1,5 @@
 from datetime import time
-from cn_stock_holidays.data import get_cached
+from cn_stock_holidays.data_helper import DataHelper
 from pandas import Timestamp, date_range, DatetimeIndex
 import pytz
 from zipline.utils.memoize import remember_last, lazyval
@@ -77,13 +77,16 @@ class SHSZExchangeCalendar(TradingCalendar):
 
     @property
     def adhoc_holidays(self):
-        return [Timestamp(t, tz=pytz.UTC) for t in get_cached(use_list=True)]
+        dh = DataHelper('data.txt')
+        return [Timestamp(t, tz=pytz.UTC) for t in dh.get_cached(use_list=True)]
 
     @lazyval
     def _minutes_per_session(self):
         diff = (
-               self.schedule.lunch_break_start.values.astype('datetime64[m]') - self.schedule.market_open.values.astype('datetime64[m]')) + (
-               self.schedule.market_close.values.astype('datetime64[m]') - self.schedule.lunch_break_end.values.astype('datetime64[m]'))
+                       self.schedule.lunch_break_start.values.astype(
+                           'datetime64[m]') - self.schedule.market_open.values.astype('datetime64[m]')) + (
+                       self.schedule.market_close.values.astype(
+                           'datetime64[m]') - self.schedule.lunch_break_end.values.astype('datetime64[m]'))
         diff = diff.astype(np.int64)
         return diff + 2
 

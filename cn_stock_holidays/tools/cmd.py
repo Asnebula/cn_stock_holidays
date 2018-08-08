@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import click
-from cn_stock_holidays import data
-from cn_stock_holidays import data_hk
+# from cn_stock_holidays import data
+# from cn_stock_holidays import data_hk
+from cn_stock_holidays import data_helper, common
 import datetime
 import platform
 
@@ -16,9 +17,9 @@ import platform
 @click.option("--daytype", "-d", default="workday", help="workday or holiday")
 def main(market, start, end, output, format, daytype):
     if market == 'cn':
-        holiday = data
+        holiday = data_helper.DataHelper('data.txt');
     elif market == 'hk':
-        holiday = data_hk
+        holiday = data_helper.DataHelper('data_hk.txt');
     else:
         # TODO extend to cn_future holidays
         pass
@@ -58,7 +59,7 @@ def main(market, start, end, output, format, daytype):
 def parse_date(dstr):
     # handle YYYYMMDD
     if len(dstr) == 8:
-        return data.int_to_date(dstr)
+        return common.data.int_to_date(dstr)
     else:
         # handle YYYY-MM-DD
         darr = dstr.split("-")

@@ -1,5 +1,5 @@
 from datetime import time
-from cn_stock_holidays.data_hk import get_cached
+from cn_stock_holidays.data_helper import DataHelper
 from pandas import Timestamp, date_range, DatetimeIndex
 import pytz
 from zipline.utils.memoize import remember_last, lazyval
@@ -17,6 +17,7 @@ lunch_break_end = time(14, 31)
 start_default = pd.Timestamp('2000-12-25', tz='UTC')
 end_base = pd.Timestamp('today', tz='UTC')
 end_default = end_base + pd.Timedelta(days=365)
+
 
 class HKExchangeCalendar(TradingCalendar):
     """
@@ -46,7 +47,6 @@ class HKExchangeCalendar(TradingCalendar):
 
         TradingCalendar.__init__(self, start=start_default, end=end_default)
 
-
     @property
     def name(self):
         return "HKEX"
@@ -65,8 +65,8 @@ class HKExchangeCalendar(TradingCalendar):
 
     @property
     def adhoc_holidays(self):
-        return [Timestamp(t,tz=pytz.UTC) for t in get_cached(use_list=True)]
-
+        dh = DataHelper('data_hk.txt')
+        return [Timestamp(t, tz=pytz.UTC) for t in dh.get_cached(use_list=True)]
 
     @property
     @remember_last
@@ -109,7 +109,7 @@ class HKExchangeCalendar(TradingCalendar):
             before_lunch_size_int = int(daily_before_lunch_sizes[day_idx])
             after_lunch_size_int = int(daily_after_lunch_sizes[day_idx])
 
-            #print("idx:{}, before_lunch_size_int: {}".format(idx, before_lunch_size_int))
+            # print("idx:{}, before_lunch_size_int: {}".format(idx, before_lunch_size_int))
             all_minutes[idx:(idx + before_lunch_size_int)] = \
                 np.arange(
                     opens_in_ns[day_idx],
