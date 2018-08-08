@@ -2,7 +2,6 @@
 """
 Help functions for python to get china stock exchange holidays
 """
-import datetime
 import logging
 import os
 import requests
@@ -24,7 +23,7 @@ class DataHelper:
         Read data from package data file(default is data.txt in current directory)
         :return: a list contains all holiday data, element with datatime.date format
         """
-        datafilepath = os.path.join(os.path.dirname(__file__), self.data_file_name)
+        datafilepath = os.path.join(os.path.dirname(__file__), 'files', self.data_file_name)
         return get_from_file(datafilepath, use_list)
 
     def get_cache_path(self):
@@ -57,7 +56,7 @@ class DataHelper:
         :return: a list contains all holiday data, element with datatime.date format
         """
         response = requests.get(
-            'https://raw.githubusercontent.com/Asnebula/cnhd/master/cnhd/data.txt')
+            'https://raw.githubusercontent.com/Asnebula/cn_stock_holidays/master/cnhd/data.txt')
         cache_path = self.get_cache_path()
 
         with open(cache_path, 'wb') as f:

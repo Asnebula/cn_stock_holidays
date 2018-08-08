@@ -3,9 +3,9 @@
 import logging
 import pickle
 from functools import reduce
+import datetime
 
 from cnhd.common import date_to_str
-from cnhd.data import *
 
 logging.getLogger().setLevel(logging.INFO)
 
