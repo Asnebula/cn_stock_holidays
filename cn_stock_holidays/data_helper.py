@@ -6,7 +6,7 @@ import datetime
 import logging
 import os
 import requests
-from cn_stock_holidays.common import _get_from_file
+from cn_stock_holidays.common import *
 
 
 class DataHelper:
@@ -19,7 +19,7 @@ class DataHelper:
         :return: a list contains all holiday data, element with datatime.date format
         """
         datafilepath = os.path.join(os.path.dirname(__file__), self.data_file_name)
-        return _get_from_file(datafilepath, use_list)
+        return get_from_file(datafilepath, use_list)
 
     def get_cache_path(self):
         """

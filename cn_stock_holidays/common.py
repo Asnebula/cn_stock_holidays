@@ -56,7 +56,7 @@ def print_result(s):
     print("")
 
 
-def _get_from_file(filename, use_list=False):
+def get_from_file(filename, use_list=False):
     with open(filename, 'r') as f:
         data = f.readlines()
         if use_list:
