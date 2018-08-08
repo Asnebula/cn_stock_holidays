@@ -14,7 +14,7 @@ import platform
 @click.option("--format", "-f", default='YYYY-MM-DD', help="output format ,YYYY-MM-DD or YYYYMMDD")
 @click.option("--daytype", "-d", default="workday", help="workday or holiday")
 def main(market, start, end, output, format, daytype):
-    holiday = data_helper.DataHelper(market)
+    holiday = data_helper.CalendarTool(market)
 
     start_date = parse_date(start)
     end_date = parse_date(end)
@@ -51,7 +51,7 @@ def main(market, start, end, output, format, daytype):
 def parse_date(dstr):
     # handle YYYYMMDD
     if len(dstr) == 8:
-        return common.data.int_to_date(dstr)
+        return common.int_to_date(dstr)
     else:
         # handle YYYY-MM-DD
         darr = dstr.split("-")
