@@ -106,7 +106,7 @@ we had a script to check the expired of the data and fetch the data from web.
 you could set it up on cron job
 
 ```crontab
-0 0 * * * /usr/local/bin/cnhd-sync > /tmp/cnhd_sync.log
+0 0 * * * path/to/cnhd-sync > /tmp/cnhd_sync.log
 ```
 
 You could get the absolute path of cnhd-sync by which command
