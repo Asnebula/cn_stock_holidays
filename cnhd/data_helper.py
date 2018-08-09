@@ -5,6 +5,7 @@ Help functions for python to get china stock exchange holidays
 import logging
 import os
 import requests
+from functools import lru_cache
 from cnhd.common import *
 
 CN_STOCK_FILE = 'data_cn.txt'
@@ -17,6 +18,7 @@ class DataHelper:
             self.data_file_name = CN_STOCK_FILE
         elif exchange == 'HK':
             self.data_file_name = HK_STOCK_FILE
+        self.get_cached = lru_cache()(self.get_cached)  # Cache per instance
 
     def get_local(self, use_list=False):
         """
@@ -36,9 +38,7 @@ class DataHelper:
             os.mkdir(cache_dir)
         return os.path.join(cache_dir, self.data_file_name)
 
-    # decoration from common.py
-    @function_cache
-    def get_cached(self, use_list=False):  # 由于在data.py里有function_cache装饰，该函数并不总是读文件，而是读缓存优先
+    def get_cached(self, use_list=False):
         """
         get from cache version , if the cache file doesn't exist , use txt file in package data
         :return: a list/set contains all holiday data, element with datatime.date format
