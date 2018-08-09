@@ -1,8 +1,6 @@
-from cnhd.zpl.exchange_calendar_hkex import HKExchangeCalendar
-from cnhd.zpl.exchange_calendar_shsz import SHSZExchangeCalendar
+from .reg import reg_cal
 
 
 __all__ = [
-    'HKExchangeCalendar',
-    'SHSZExchangeCalendar',
+    'reg_cal',
 ]
