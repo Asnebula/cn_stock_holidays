@@ -30,8 +30,8 @@ def reg_cal(real_name, force=True):
                 return k
             else:
                 return ''
-    register_calendar_alias(_f(_additional_calendar_aliases), real_name)
-    register_calendar_type(real_name, _additional_calendar_factories[real_name])
 
+    register_calendar_alias(_f(_additional_calendar_aliases), real_name, force=force)
+    register_calendar_type(real_name, _additional_calendar_factories[real_name], force=force)
 
 # shsz_calendar = get_calendar("SHSZ")
