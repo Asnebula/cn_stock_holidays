@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cnhd",
-    version="1.3",
+    version="2.0.",
     packages=find_packages(),
     install_requires=[
         'requests',

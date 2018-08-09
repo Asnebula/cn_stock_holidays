@@ -1,4 +1,4 @@
-# cn_stock_holidays
+# cnhd (Chinese holiday especially for ticker trading)
 
 
 [![Build Status](https://travis-ci.org/rainx/cn_stock_holidays.svg?branch=master)](https://travis-ci.org/rainx/cn_stock_holidays)
@@ -8,24 +8,24 @@
 沪深市场
 
 ```
-cn_stock_holidays/data_cn.txt
+cnhd/files/data_cn.txt
 ```
 
 香港市场
 
 ```
-cn_stock_holidays/data_hk.txt
+cnhd/files/data_hk.txt
 ```
 
 
 Fetch Data via URL :
 
 ```
-wget https://raw.githubusercontent.com/rainx/cn_stock_holidays/master/cn_stock_holidays/data_cn.txt
+wget https://raw.githubusercontent.com/Asnebula/cn_stock_holidays/master/cnhd/files/data_cn.txt
 
 or
 
-curl https://raw.githubusercontent.com/rainx/cn_stock_holidays/master/cn_stock_holidays/data_cn.txt
+curl https://raw.githubusercontent.com/Asnebula/cn_stock_holidays/master/cnhd/files/data_hk.txt
 ```
 
 
@@ -51,53 +51,18 @@ pip install git+https://github.com/asnebula/cn_stock_holidays.git
 ```python
 
 # 针对沪深
-import cn_stock_holidays.data as shsz
+from cnhd import CalendarTool
+ct=CalendarTool('CN')
 
 # 针对香港
-import cn_stock_holidays.data_hk as hkex
+from cnhd import CalendarTool
+ct=CalendarTool('HK')
 
 ```
 
-### Functions
-
-```python
-Help on module cn_stock_holidays.data in cn_stock_holidays:
-
-NAME
-    cn_stock_holidays.data - Help functions for python to get china stock exchange holidays
-
-FILE
-    /Users/rainx/dev/cn_stock_holidays/cn_stock_holidays/data.py
-
 FUNCTIONS
-    check_expired()
-        check if local or cached data need update
-        :return: true/false
 
-    date_to_int(da)
-
-    date_to_str(da)
-
-    get_cache_path()
-
-    get_cached()
-        get from cache version , if it is not exising , use txt file in package data
-        :return: a list contains all holiday data, element with datatime.date format
-
-    get_local()
-        read data from package data file
-        :return: a list contains all holiday data, element with datatime.date format
-
-    get_remote_and_cache()
-        get newest data file from network and cache on local machine
-        :return: a list contains all holiday data, element with datatime.date format
-
-    int_to_date(d)
-
-    str_to_int(s)
-
-    sync_data()
-
+    Functions of instance of CalendarTool
 
     is_trading_day(dt)
         param dt: datetime.datetime or datetime.date.
@@ -123,11 +88,13 @@ FUNCTIONS
 
 ### about function cache
 
-from version 0.10 on, we used functools.lrucache on `get_cached` for getting more speech, 
+from version 0.10 on, we used functools.lrucache on `get_cached` for getting more speed,
 if needed you can used the following syntax to clear cache.
 
 ```python
-get_cached.cache_clear()  
+from cnhd import CalendarTool
+ct=CalendarTool('CN')
+ct.get_cached.cache_clear()
 
 ```
 

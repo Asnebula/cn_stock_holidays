@@ -1,9 +1,35 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+from functools import wraps
+import sys
+
 '''
 一些类型转换函数和其他
 '''
+if sys.version_info.major == 2:
+    def function_cache(f):
+        memo = {}
+
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            if args in memo:
+                return memo[args]
+            else:
+                rv = f(*args, **kwargs)
+                memo[args] = rv
+                return rv
+
+        def cache_clear():
+            global memo
+            memo = {}
+
+        wrapper.cache_clear = cache_clear
+        return wrapper
+else:  # suppose it is 3 or larger
+    from functools import lru_cache
+
+    function_cache = lru_cache(None, typed=True)  # 缓存函数调用结果
 
 
 def int_to_date(d):
