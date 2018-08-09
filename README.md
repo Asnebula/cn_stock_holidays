@@ -8,7 +8,7 @@
 沪深市场
 
 ```
-cn_stock_holidays/data.txt
+cn_stock_holidays/data_cn.txt
 ```
 
 香港市场
@@ -21,11 +21,11 @@ cn_stock_holidays/data_hk.txt
 Fetch Data via URL :
 
 ```
-wget https://raw.githubusercontent.com/rainx/cn_stock_holidays/master/cn_stock_holidays/data.txt
+wget https://raw.githubusercontent.com/rainx/cn_stock_holidays/master/cn_stock_holidays/data_cn.txt
 
 or
 
-curl https://raw.githubusercontent.com/rainx/cn_stock_holidays/master/cn_stock_holidays/data.txt
+curl https://raw.githubusercontent.com/rainx/cn_stock_holidays/master/cn_stock_holidays/data_cn.txt
 ```
 
 

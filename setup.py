@@ -15,7 +15,7 @@ setup(
     description="A List of china stock exchange holidays",
     license="MIT",
     keywords="china stock holiday exchange Shanghai, Shenzhen and HongKong",
-    url="https://github.com/Asnebula/cnhd.git",  # project home page, if any
+    url="https://github.com/Asnebula/cn_stock_holidays.git",  # project home page, if any
 
     package_data={
         # If any package contains *.txt or *.rst files, include them:
@@ -25,7 +25,6 @@ setup(
         'console_scripts': [
             'cnhd-sync=cnhd.data_helper:main',
             'get-day-list=cnhd.tools.cmd:main',
-            'testing-cmd=cnhd.tools.remove_weekend_from_day_list:main',
         ]
     }
 )
