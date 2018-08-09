@@ -25,7 +25,7 @@ setup(
         'console_scripts': [
             'cnhd-sync=cnhd.data_helper:main',
             'get-day-list=cnhd.tools.cmd:main',
-            'testing-cmd=cnhd.tools.remove_weekend_from_day_list',
+            'testing-cmd=cnhd.tools.remove_weekend_from_day_list:main',
         ]
     }
 )
