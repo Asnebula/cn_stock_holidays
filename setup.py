@@ -5,8 +5,10 @@ setup(
     version="1.4.",
     packages=find_packages(),
     install_requires=[
+        'pandas',
         'requests',
-        'click'
+        'click',
+        'dateutil',
     ],
 
     # metadata for upload to PyPI

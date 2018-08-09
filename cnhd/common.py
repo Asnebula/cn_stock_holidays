@@ -2,6 +2,9 @@
 
 import datetime
 from functools import wraps
+from dateutil import parser
+from pandas.tseries.offsets import CustomBusinessDay
+import pandas as pd
 import sys
 
 '''
@@ -56,10 +59,37 @@ def print_result(s):
     print("")
 
 
-def get_from_file(filename, use_list=False):
+def get_from_file(filename):
     with open(filename, 'r') as f:
         data = f.readlines()
-        if use_list:
-            return [int_to_date(str_to_int(i.rstrip('\n'))) for i in data]
-        else:
-            return set([int_to_date(str_to_int(i.rstrip('\n'))) for i in data])
+        return [int_to_date(str_to_int(i.rstrip('\n'))) for i in data]
+
+
+def convert_arguments_to_datetime(arguments):
+    def make_wrapper(func):
+        def wrapper(*args, **kwargs):
+            # 拿到被装饰函数的参数名列表
+            code = func.__code__
+            names = list(code.co_varnames[:code.co_argcount])
+            # args类型是tuple, tuple是不可变对象
+            args_in_list = list(args)
+            # 装饰arguments
+            for argument in arguments:
+                num = names.index(argument)
+                value = args[num]
+                if isinstance(value, str):
+                    value = parser.parse(value)
+                args_in_list[num] = value
+            new_args = tuple(args_in_list)
+            return func(*new_args, **kwargs)
+
+        return wrapper
+
+    return make_wrapper
+
+
+def get_periods_from_cad(start=None, end=None, n=None):
+    weekmask = 'Mon Tue Wed Thu Fri'
+    cbd = CustomBusinessDay(weekmask=weekmask)
+    weekdays = pd.date_range(start=start, end=end, periods=n, freq=cbd)
+    return set(weekdays)
