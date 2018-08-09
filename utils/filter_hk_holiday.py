@@ -1,4 +1,4 @@
-#coding: utf-8
+# -*- coding: utf-8 -*-
 
 import logging
 import pickle
@@ -41,7 +41,7 @@ while offset < today:
 
 holidays_str = [date_to_str(da) for da in holidays]
 
-with open("data_hk.txt", "w") as hk:
+with open("../cnhd/files/data_hk.txt", "w") as hk:
     hk.write("\n".join(holidays_str))
 
 

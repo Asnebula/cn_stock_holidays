@@ -2,13 +2,11 @@ import requests
 from datetime import datetime, date, timedelta
 import logging
 import re
-import pprint
 from bs4 import BeautifulSoup
 import pickle
-
+import sys
 
 logging.getLogger().setLevel(logging.INFO)
-
 
 """
 Post
@@ -57,7 +55,9 @@ def fetch_hsi(start, end):
     """
 
     s = requests.Session()
-    s.headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"
+    s.headers[
+        "User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3)" \
+                        " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"
     res = s.get("https://cn.investing.com/indices/hang-sen-40-historical-data")
     content = res.text
 
@@ -84,8 +84,8 @@ def fetch_hsi(start, end):
 
     # headers = {one.split(":")[0]:one.split(":")[1] for one in request_header.split("\n") if one.strip("") != ""}
 
-    #logging.info("posting data")
-    #pprint.pprint(post_data)
+    # logging.info("posting data")
+    # pprint.pprint(post_data)
     s.headers['Referer'] = 'https://cn.investing.com/indices/hang-sen-40-historical-data'
     s.headers['X-Requested-With'] = 'XMLHttpRequest'
     response = s.post("https://cn.investing.com/instruments/HistoricalDataAjax", data=post_data)
@@ -142,12 +142,13 @@ if __name__ == __name__:
     """
     找出历史行情中所有信息
     """
+    sys.setrecursionlimit(1E6)
     start = date(2000, 1, 1)
     end = datetime.today().date()
 
     offset = start
     results = []
-    trade_dates=[]
+    trade_dates = []
     while offset < end:
         offset_end = offset + timedelta(days=30)
         if offset_end > end:
@@ -160,7 +161,3 @@ if __name__ == __name__:
 
     pickle.dump(trade_dates, open("./trade_dates", "wb"))
     pickle.dump(results, open("./hki.pickle", "wb"))
-
-
-
-
