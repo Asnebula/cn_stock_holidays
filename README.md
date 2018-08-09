@@ -58,9 +58,13 @@ ct=CalendarTool('CN')
 from cnhd import CalendarTool
 ct=CalendarTool('HK')
 
+# zipline支持部分（前提：zipline已经安装）
+from cnhd.zpl import reg_cal
+reg_cal('HKEX') #SHSZ if 沪深市场
+hk_cad=get_calendar('HKEX') #SHSZ if 沪深市场
 ```
 
-FUNCTIONS
+### FUNCTIONS
 
     Functions of instance of CalendarTool
 
