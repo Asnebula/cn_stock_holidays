@@ -17,10 +17,8 @@ setup(
     keywords="china stock holiday exchange Shanghai, Shenzhen and HongKong",
     url="https://github.com/Asnebula/cn_stock_holidays.git",  # project home page, if any
 
-    package_data={
-        # If any package contains *.txt or *.rst files, include them:
-        'cnhd': ['*.txt'],
-    },
+    include_package_data=True,
+
     entry_points={
         'console_scripts': [
             'cnhd-sync=cnhd.data_helper:main',
