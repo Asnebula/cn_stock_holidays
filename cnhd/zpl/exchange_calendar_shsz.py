@@ -28,15 +28,6 @@ class SHSZExchangeCalendar(TradingCalendar):
     Close Time 3:00 PM, Asia/Shanghai
 
     One big difference between china and us exchange is china exchange has a lunch break , so I handle it
-
-    Sample Code in ipython:
-
-    > from zipline.utils.calendars import *
-    > from cnhd.zpl.exchange_calendar_shsz import SHSZExchangeCalendar
-    > register_calendar("SHSZ", SHSZExchangeCalendar(), force=True)
-    > c=get_calendar("SHSZ")
-
-    for the guy need to keep updating about holiday file, try to add `cnhd-sync` command to crontab
     """
 
     def __init__(self, start=start_default, end=end_default):

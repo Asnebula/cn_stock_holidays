@@ -29,14 +29,6 @@ class HKExchangeCalendar(TradingCalendar):
 
     One big difference between china and us exchange is china exchange has a lunch break , so I handle it
 
-    Sample Code in ipython:
-
-    > from zipline.utils.calendars import *
-    > from cnhd.zpl.exchange_calendar_hkex import HKExchangeCalendar
-    > register_calendar("HKEX", HKExchangeCalendar(), force=True)
-    > c=get_calendar("HKEX")
-
-    for the guy need to keep updating about holiday file, try to add `cnhd-sync-hk` command to crontab
     """
 
     def __init__(self, start=start_default, end=end_default):
@@ -128,7 +120,3 @@ class HKExchangeCalendar(TradingCalendar):
 
             idx += size_int
         return DatetimeIndex(all_minutes).tz_localize("UTC")
-
-
-if __name__ == '__main__':
-    HKExchangeCalendar()
