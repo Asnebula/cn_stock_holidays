@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from datetime import time
 from cnhd.data_helper import DataHelper
 from pandas import Timestamp, date_range, DatetimeIndex

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from zipline.utils.calendars import (
     clear_calendars,
     deregister_calendar,
@@ -33,5 +35,3 @@ def reg_cal(real_name, force=True):
 
     register_calendar_alias(_f(_additional_calendar_aliases), real_name, force=force)
     register_calendar_type(real_name, _additional_calendar_factories[real_name], force=force)
-
-# shsz_calendar = get_calendar("SHSZ")

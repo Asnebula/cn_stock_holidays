@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Help functions for python to get china stock exchange holidays
+Help functions for python to get china stock/future exchange holidays
 """
 import logging
 import os
