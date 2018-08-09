@@ -9,7 +9,7 @@ from cnhd.common import str_to_int, int_to_date
 @click.argument('output', type=click.File('w'))
 def main(input, output):
     lines = [one.strip().replace("-", "") for one in input.readlines() if one.strip() != ""]
-    lines = [one for one in lines if int_to_date(str_to_int(one)).weekday() < 5]
+    lines = [one for one in lines if int_to_date(str_to_int(one)).weekday() <= 5]
     output.write("\n".join(lines))
     # click.echo("Done! writing to output file!")
 
