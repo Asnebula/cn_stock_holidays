@@ -31,6 +31,8 @@ YYYYMMDD
 
 ## pip安装 (install through pip)
 ```
+pip install cnhd
+or
 pip install git+https://github.com/asnebula/cn_stock_holidays.git
 ```
 
