@@ -8,7 +8,6 @@ setup(
         'pandas',
         'requests',
         'click',
-        'dateutil',
     ],
 
     # metadata for upload to PyPI
