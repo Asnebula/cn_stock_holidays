@@ -54,22 +54,33 @@ hk_cad = get_calendar('HKEX')  # SHSZ if 沪深市场
 ## API函数（CalendarTool实例可用） (Functions of instance of CalendarTool)
 ```
     is_trading_day(dt)
-        param dt: datetime.datetime or datetime.date.
+        param dt: str,datetime.datetime or datetime.date.
         is a trading day or not
         :returns: Bool
 
-    previous_trading_day(dt):
-        param dt: datetime.datetime or datetime.date.
+    previous_trading_day(dt,return_type=str):
+        param dt: str,datetime.datetime or datetime.date.
         get previous trading day
-        :returns: datetime.date
+        :returns: str,datetime.datetime or datetime.date according to value of return_type
 
-    next_trading_day(dt):
-        param dt: datetime.datetime or datetime.date.
+    next_trading_day(dt,return_type=str):
+        param dt: str,datetime.datetime or datetime.date.
         get next trading day
-        :returns: datetime.date
+        :returns: str,datetime.datetime or datetime.date according to value of return_type
+    
+    previous_n_trading_day(dt,n,return_type=str):
+        param dt: str,datetime.datetime or datetime.date.
+        param n: int, number of previous trading days 
+        get the previous n trading day
+        :returns: str,datetime.datetime or datetime.date according to value of return_type
+    
+    next_n_trading_day(dt,n,return_type=str):
+        param dt: str,datetime.datetime or datetime.date.
+        param n: int, number of next trading days 
+        get the next n trading day
+        :returns: str,datetime.datetime or datetime.date according to value of return_type
 
     trading_days_between(start, end):
-
         param start, end: start and end time , datetime.datetime or datetime.date
         get calendar data range
         :returns: a generator for available dates for chinese market included start and end date
