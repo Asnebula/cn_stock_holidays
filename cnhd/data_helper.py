@@ -5,7 +5,7 @@ Help functions for python to get china stock/future exchange holidays
 import logging
 import os
 import requests
-from datetime import datetime
+import datetime
 from pandas.tslib import Timestamp as tp
 from cnhd.common import *
 
@@ -111,7 +111,7 @@ class CalendarTool(DataHelper):
                 if return_type == datetime.date:
                     return dt
                 else:
-                    d = datetime.combine(dt, datetime.min.time())
+                    d = datetime.datetime.combine(dt, datetime.datetime.min.time())
                     if return_type == datetime.datetime:
                         return d
                     elif return_type == str:
@@ -127,7 +127,7 @@ class CalendarTool(DataHelper):
                 if return_type == datetime.date:
                     return dt
                 else:
-                    d = datetime.combine(dt, datetime.min.time())
+                    d = datetime.datetime.combine(dt, datetime.datetime.min.time())
                     if return_type == datetime.datetime:
                         return d
                     elif return_type == str:
@@ -155,6 +155,7 @@ class CalendarTool(DataHelper):
         adhoc = set(tp(i) for i in self.get_cached())
         workdays = list(weekdays.difference(adhoc))
         workdays.sort()
+        workdays = pd.DatetimeIndex(workdays)
 
         # get object date
         rs_datetime = workdays[workdays <= pd.to_datetime(pre_day)][-n].to_pydatetime()
@@ -174,6 +175,7 @@ class CalendarTool(DataHelper):
         adhoc = set(tp(i) for i in self.get_cached())
         workdays = list(weekdays.difference(adhoc))
         workdays.sort()
+        workdays = pd.DatetimeIndex(workdays)
 
         # get object date
         rs_datetime = workdays[workdays >= pd.to_datetime(next_day)][n - 1].to_pydatetime()
@@ -191,3 +193,4 @@ def main():
     d_hk = DataHelper('HK')
     d_cn.sync_data()
     d_hk.sync_data()
+    

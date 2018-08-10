@@ -79,6 +79,8 @@ def convert_arguments_to_datetime(arguments):
                 value = args[num]
                 if isinstance(value, str):
                     value = parser.parse(value)
+                elif isinstance(value, datetime.date):
+                    value = datetime.datetime.combine(value, datetime.datetime.min.time())
                 args_in_list[num] = value
             new_args = tuple(args_in_list)
             return func(*new_args, **kwargs)
