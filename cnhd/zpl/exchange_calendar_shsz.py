@@ -71,7 +71,7 @@ class SHSZExchangeCalendar(TradingCalendar):
     @property
     def adhoc_holidays(self):
         dh = DataHelper('CN')
-        return [Timestamp(t, tz=pytz.UTC) for t in dh.get_cached(use_list=True)]
+        return [Timestamp(t, tz=pytz.UTC) for t in dh.get_cached()]
 
     @lazyval
     def _minutes_per_session(self):

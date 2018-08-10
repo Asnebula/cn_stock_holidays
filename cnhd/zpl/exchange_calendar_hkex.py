@@ -60,7 +60,7 @@ class HKExchangeCalendar(TradingCalendar):
     @property
     def adhoc_holidays(self):
         dh = DataHelper('HK')
-        return [Timestamp(t, tz=pytz.UTC) for t in dh.get_cached(use_list=True)]
+        return [Timestamp(t, tz=pytz.UTC) for t in dh.get_cached()]
 
     @property
     @remember_last
