@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import click
-from cnhd.core import common, data_helper
+from cnhd.core.data_helper import CalendarTool
+from cnhd.core.common import int_to_date
 import datetime
 import platform
 
@@ -14,7 +15,7 @@ import platform
 @click.option("--format", "-f", default='YYYY-MM-DD', help="output format ,YYYY-MM-DD or YYYYMMDD")
 @click.option("--daytype", "-d", default="workday", help="workday or holiday")
 def main(market, start, end, output, format, daytype):
-    holiday = data_helper.CalendarTool(market)
+    holiday = CalendarTool(market)
 
     start_date = parse_date(start)
     end_date = parse_date(end)
@@ -51,7 +52,7 @@ def main(market, start, end, output, format, daytype):
 def parse_date(dstr):
     # handle YYYYMMDD
     if len(dstr) == 8:
-        return common.int_to_date(dstr)
+        return int_to_date(dstr)
     else:
         # handle YYYY-MM-DD
         darr = dstr.split("-")
