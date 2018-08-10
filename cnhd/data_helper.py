@@ -134,7 +134,7 @@ class CalendarTool(DataHelper):
                     return d.strftime('%Y%m%d')
 
     @convert_arguments_to_datetime(['start', 'end'])
-    def trading_days_between(self, start, end):
+    def trading_days_between(self, start, end, return_type=str):
         start = start.date()
         end = end.date()
         dataset = self.get_cached()
@@ -143,7 +143,15 @@ class CalendarTool(DataHelper):
         curdate = start
         while curdate <= end:
             if curdate.weekday() < 5 and not (curdate in dataset):
-                yield curdate
+                if return_type == datetime.date:
+                    yield curdate
+                else:
+                    d = datetime.datetime.combine(curdate, datetime.datetime.min.time())
+                    if return_type == datetime.datetime:
+                        yield d
+                    elif return_type == str:
+                        yield d.strftime('%Y%m%d')
+                    yield d.strftime('%Y%m%d')
             curdate = curdate + datetime.timedelta(days=1)
 
     @convert_arguments_to_datetime(['dt'])
