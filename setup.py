@@ -20,7 +20,7 @@ setup(
 
     package_data={
         # If any package contains *.txt or *.rst files, include them:
-        '': ['core/files/*.txt'],
+        '': ['files/*.txt'],
     },
     entry_points={
         'console_scripts': [

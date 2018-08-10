@@ -24,7 +24,7 @@ class DataHelper:
         Read data from package data file(default is data_cn.txt in current directory)
         :return: a list contains all holiday data, element with datatime.date format
         """
-        datafilepath = os.path.join(os.path.dirname(__file__), 'files', self.data_file_name)
+        datafilepath = os.path.join(os.path.dirname(__file__), '../files', self.data_file_name)
         return get_from_file(datafilepath)
 
     def get_cache_path(self):
