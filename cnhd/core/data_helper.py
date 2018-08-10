@@ -7,6 +7,10 @@ import os
 import requests
 from pandas.tslib import Timestamp as tp
 from .common import *
+from .common import (
+    _get_from_file,
+    _get_periods_from_cad,
+)
 
 CN_STOCK_FILE = 'data_cn.txt'
 HK_STOCK_FILE = 'data_hk.txt'
@@ -25,7 +29,7 @@ class DataHelper:
         :return: a list contains all holiday data, element with datatime.date format
         """
         datafilepath = os.path.join(os.path.dirname(__file__), '../files', self.data_file_name)
-        return get_from_file(datafilepath)
+        return _get_from_file(datafilepath)
 
     def get_cache_path(self):
         """
@@ -48,7 +52,7 @@ class DataHelper:
         cache_path = self.get_cache_path()
 
         if os.path.isfile(cache_path):
-            return get_from_file(cache_path)
+            return _get_from_file(cache_path)
         else:
             return self.get_local()
 
@@ -157,7 +161,7 @@ class CalendarTool(DataHelper):
     def previous_n_trading_day(self, dt, n, return_type=str):
         # get workdays
         pre_day = self.previous_trading_day(dt, return_type=str)
-        weekdays = get_periods_from_cad(end=pre_day, n=max(2 * n, 15))
+        weekdays = _get_periods_from_cad(end=pre_day, n=max(2 * n, 15))
         adhoc = set(tp(i) for i in self.get_cached())
         workdays = list(weekdays.difference(adhoc))
         workdays.sort()
@@ -177,7 +181,7 @@ class CalendarTool(DataHelper):
     def next_n_trading_day(self, dt, n, return_type=str):
         # get workdays
         next_day = self.next_trading_day(dt, return_type=str)
-        weekdays = get_periods_from_cad(start=next_day, n=max(2 * n, 15))
+        weekdays = _get_periods_from_cad(start=next_day, n=max(2 * n, 15))
         adhoc = set(tp(i) for i in self.get_cached())
         workdays = list(weekdays.difference(adhoc))
         workdays.sort()

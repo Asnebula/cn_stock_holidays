@@ -59,12 +59,6 @@ def print_result(s):
     print("")
 
 
-def get_from_file(filename):
-    with open(filename, 'r') as f:
-        data = f.readlines()
-        return [int_to_date(str_to_int(i.rstrip('\n'))) for i in data]
-
-
 def convert_arguments_to_datetime(arguments):
     def make_wrapper(func):
         def wrapper(*args, **kwargs):
@@ -90,7 +84,13 @@ def convert_arguments_to_datetime(arguments):
     return make_wrapper
 
 
-def get_periods_from_cad(start=None, end=None, n=None):
+def _get_from_file(filename):
+    with open(filename, 'r') as f:
+        data = f.readlines()
+        return [int_to_date(str_to_int(i.rstrip('\n'))) for i in data]
+
+
+def _get_periods_from_cad(start=None, end=None, n=None):
     weekmask = 'Mon Tue Wed Thu Fri'
     cbd = CustomBusinessDay(weekmask=weekmask)
     weekdays = pd.date_range(start=start, end=end, periods=n, freq=cbd)
