@@ -1,7 +1,7 @@
 # cnhd (Chinese holiday especially for ticker trading)
 
 
-[![Build Status](https://travis-ci.org/rainx/cn_stock_holidays.svg?branch=master)](https://travis-ci.org/rainx/cn_stock_holidays)
+[![Build Status](https://travis-ci.org/Asnebula/cn_stock_holidays.svg?branch=master)](https://travis-ci.org/Asnebula/cn_stock_holidays)
 
 ## 数据文件 (File Path)
 沪深市场
