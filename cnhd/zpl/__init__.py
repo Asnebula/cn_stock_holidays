@@ -1,4 +1,4 @@
-from cnhd.zpl.calendar.reg import reg_cal
+from .calendar.reg import reg_cal
 
 
 __all__ = [
