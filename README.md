@@ -80,7 +80,7 @@ hk_cad = get_calendar('HKEX')  # SHSZ if 沪深市场
         get the next n trading day
         :returns: str,datetime.datetime or datetime.date according to value of return_type
 
-    trading_days_between(start, end):
+    trading_days_between(start, end,return_type=str):
         param start, end: start and end time , datetime.datetime or datetime.date
         get calendar data range
         :returns: a generator for available dates for chinese market included start and end date
