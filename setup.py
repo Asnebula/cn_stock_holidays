@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'cnhd-sync=cnhd.data_helper:main',
+            'cnhd-sync=cnhd.core.data_helper:main',
             'get-day-list=cnhd.tools.cmd:main',
         ]
     }
