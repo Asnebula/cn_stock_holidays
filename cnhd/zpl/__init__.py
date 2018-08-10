@@ -1,4 +1,4 @@
-from .calendar.reg import reg_cal
+from .reg import reg_cal
 
 
 __all__ = [
