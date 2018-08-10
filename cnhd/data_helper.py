@@ -151,7 +151,6 @@ class CalendarTool(DataHelper):
                         yield d
                     elif return_type == str:
                         yield d.strftime('%Y%m%d')
-                    yield d.strftime('%Y%m%d')
             curdate = curdate + datetime.timedelta(days=1)
 
     @convert_arguments_to_datetime(['dt'])
