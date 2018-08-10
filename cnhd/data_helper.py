@@ -5,7 +5,6 @@ Help functions for python to get china stock/future exchange holidays
 import logging
 import os
 import requests
-import datetime
 from pandas.tslib import Timestamp as tp
 from cnhd.common import *
 
@@ -193,4 +192,3 @@ def main():
     d_hk = DataHelper('HK')
     d_cn.sync_data()
     d_hk.sync_data()
-    

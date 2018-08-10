@@ -36,11 +36,11 @@ class TestCalendarTool(unittest.TestCase):
         self.assertIsNotNone(cthk.is_trading_day(datetime.date.today()))
 
     def test_next_trading_day(self):
-        data = cthk.next_trading_day(datetime.date.today())
+        data = cthk.next_trading_day(datetime.date.today(), return_type=datetime.date)
         self.assertGreater(data, datetime.date.today())
 
     def test_previous_trading_day(self):
-        data = cthk.previous_trading_day(datetime.date.today())
+        data = cthk.previous_trading_day(datetime.date.today(), return_type=datetime.date)
         self.assertLess(data, datetime.date.today())
 
     def test_cache_clear(self):
@@ -52,6 +52,6 @@ class TestCalendarTool(unittest.TestCase):
     def test_loop_100000(self):
         trade_days = datetime.date.today()
         for i in range(100000):
-            trade_days = cthk.previous_trading_day(trade_days)
+            trade_days = cthk.previous_trading_day(trade_days,return_type=datetime.date)
 
         self.assertIsInstance(trade_days, datetime.date)
