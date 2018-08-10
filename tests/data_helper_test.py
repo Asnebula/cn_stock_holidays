@@ -25,7 +25,7 @@ class TestCalendarTool(unittest.TestCase):
         self.assertTrue(datetime.date(2000, 12, 25) in data, "get datetime.date(2000, 12, 25) in cached data")
 
     def test_trading_days_between(self):
-        data = list(cthk.trading_days_between(int_to_date(20170125), int_to_date(20170131)))
+        data = list(cthk.trading_days_between(int_to_date(20170125), int_to_date(20170131), return_type=datetime.date))
 
         self.assertEqual(len(data), 3)
         self.assertTrue(int_to_date(20170125) in data)
@@ -52,6 +52,6 @@ class TestCalendarTool(unittest.TestCase):
     def test_loop_100000(self):
         trade_days = datetime.date.today()
         for i in range(100000):
-            trade_days = cthk.previous_trading_day(trade_days,return_type=datetime.date)
+            trade_days = cthk.previous_trading_day(trade_days, return_type=datetime.date)
 
         self.assertIsInstance(trade_days, datetime.date)
