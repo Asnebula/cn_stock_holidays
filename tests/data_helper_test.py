@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import unittest
-from cnhd.common import *
+from cnhd.core.common import *
 from cnhd import CalendarTool as ct
 
 cthk = ct('HK')

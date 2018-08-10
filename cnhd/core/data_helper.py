@@ -6,7 +6,7 @@ import logging
 import os
 import requests
 from pandas.tslib import Timestamp as tp
-from cnhd.common import *
+from cnhd.core.common import *
 
 CN_STOCK_FILE = 'data_cn.txt'
 HK_STOCK_FILE = 'data_hk.txt'

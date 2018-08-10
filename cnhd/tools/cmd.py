@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import click
-from cnhd import data_helper, common
+from cnhd.core import common, data_helper
 import datetime
 import platform
 

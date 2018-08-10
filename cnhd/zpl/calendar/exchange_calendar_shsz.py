@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from datetime import time
-from cnhd.data_helper import DataHelper
+from cnhd.core.data_helper import DataHelper
 from pandas import Timestamp, date_range, DatetimeIndex
 import pytz
 from zipline.utils.memoize import remember_last, lazyval
